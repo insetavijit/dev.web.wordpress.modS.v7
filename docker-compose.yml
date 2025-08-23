@@ -1,0 +1,64 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: webdevwordpress-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    build: ./apache-php
+    container_name: webdevwordpress-wp
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Www:/var/www/html
+      - /home/avijit/dev2/dev.themes/modS.theme.template/modS.theme.template.code:/shared/themes/modS.theme.template.code:cached
+      - ./apache-php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./apache-php/init-wordpress.sh:/usr/local/bin/init-wordpress.sh
+    environment:
+      XDEBUG_MODE: debug
+      XDEBUG_CLIENT_PORT: 9003
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+      WORDPRESS_DB_NAME: wordpress
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+    entrypoint: ["/usr/local/bin/init-wordpress.sh"]
+
+  wpcli:
+    image: wordpress:cli
+    container_name: webdevwordpress-wpcli
+    volumes:
+      - ./Www:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+      - wordpress
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: webdevwordpress-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpass
+    depends_on:
+      - db
+
+volumes:
+  db_data:

@@ -1,0 +1,5 @@
+services:
+  wordpress:
+    volumes:
+      - ./Www:/var/www/html
+      - ./dev.themes/modS.theme.template/modS.theme.template.code:/shared/themes/modS.theme.template.code:cached
