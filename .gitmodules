@@ -4,3 +4,6 @@
 [submodule "dev.themes/modS.theme.template/modS.theme.template.code"]
 	path = dev.themes/modS.theme.template/modS.theme.template.code
 	url = git@github.com:insetavijit/modS.theme.template.code.git
+[submodule "dev.themes/modS.theme.template"]
+	path = dev.themes/modS.theme.template
+	url = git@github.com:insetavijit/modS.theme.template.v1.git
