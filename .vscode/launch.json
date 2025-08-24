@@ -2,12 +2,25 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Listen for Xdebug (WordPress)",
+      "name": "Listen for Xdebug (WordPress + Theme)",
       "type": "php",
       "request": "launch",
       "port": 9003,
       "pathMappings": {
-        "/var/www/html": "${workspaceFolder}/Www"
+        "/var/www/html": "${workspaceFolder}/Www",
+        // Theme symlink path (how WordPress sees it)
+        "/var/www/html/wp-content/themes/modS.theme.template": "${workspaceFolder}/dev.themes/modS.theme.template/modS.theme.template.code",
+        // Theme realpath (how Xdebug sometimes resolves it)
+        "/shared/themes/modS.theme.template.code": "${workspaceFolder}/dev.themes/modS.theme.template/modS.theme.template.code"
+      },
+      "log": true,
+      "ignore": [
+        "**/vendor/**/*.php"
+      ],
+      "xdebugSettings": {
+        "max_children": 128,
+        "max_data": 1024,
+        "max_depth": 3
       }
     }
   ]

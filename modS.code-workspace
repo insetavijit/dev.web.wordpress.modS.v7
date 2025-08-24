@@ -1,0 +1,113 @@
+{
+  "folders": [
+    {
+      "name": "Code",
+      "path": "./dev.themes/modS.theme.template/modS.theme.template.code/"
+    },
+    {
+      "name": "Root",
+      "path": "."
+    }    
+  ],
+  "extensions": {
+    "recommendations": [
+      "bmewburn.vscode-intelephense-client", // PHP IntelliSense
+      "tukusejssirs.wordpress-snippet",     // WordPress Snippets
+      "felixfbecker.php-debug",             // PHP Debugging
+      "junstyle.php-cs-fixer",              // PHP CS Fixer
+      "esbenp.prettier-vscode",             // Prettier
+    //   "stylelint.vscode-stylelint",         // CSS/SCSS linting
+    //   "bradlc.vscode-tailwindcss",          // Tailwind IntelliSense
+    //   "ms-azuretools.vscode-docker",        // Docker support
+    //   "eamodio.gitlens"                     // GitLens
+    ],
+    "unwantedRecommendations": []
+  },
+  "settings": {
+    "editor.stickyScroll.enabled": false,
+    "editor.fontSize": 15,
+    "editor.fontLigatures": true,
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+
+    // PHP / Intelephense setup
+    "php.executablePath": "/usr/local/bin/php", 
+    "php.validate.executablePath": "/usr/local/bin/php",
+    "php.suggest.basic": false,
+    "intelephense.environment.phpVersion": "8.1",
+    "intelephense.stubs": [
+      "standard",
+      "Core",
+      "superglobals",
+      "bcmath",
+      "curl",
+      "date",
+      "dom",
+      "fileinfo",
+      "gd",
+      "json",
+      "mbstring",
+      "mysql",
+      "mysqli",
+      "redis",
+      "wordpress"
+    ],
+    "intelephense.environment.includePaths": [
+      "./Www/wp-content/plugins",
+      "./Www/wp-content/themes",
+      "./apache-php/vendor"
+    ],
+
+    // File handling
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/vendor": false,
+      "**/.git": true,
+      "**/cache": true,
+      "**/uploads": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/*.log": true,
+      "**/db_data": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/cache": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/dist/**": true,
+      "**/cache/**": true
+    },
+
+    // Formatting & editor behavior
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.rulers": [80, 120],
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+
+    // Language associations
+    "files.associations": {
+      "*.php": "php",
+      "*.inc": "php",
+      "*.module": "php",
+      "*.theme": "php",
+      "*.scss": "scss",
+      "*.js": "javascript",
+      "*.ts": "typescript",
+      "*.tsx": "typescriptreact"
+    },
+
+    // Docker integration
+    "docker.dockerComposeFile": [
+      "./docker-compose.yml"
+    ],
+    "docker.dockerComposeService": "wordpress"
+  }
+}
