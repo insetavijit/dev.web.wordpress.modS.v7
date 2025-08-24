@@ -18,7 +18,7 @@ services:
       - "8080:80"
     volumes:
       - ./Www:/var/www/html
-      - /home/avijit/dev2/dev.themes/modS.theme.template/modS.theme.template.code:/shared/themes/modS.theme.template.code:cached
+      - ./dev.themes/modS.theme.template/modS.theme.template.code:/shared/themes/modS.theme.template.code:cached
       - ./apache-php/php.ini:/usr/local/etc/php/conf.d/custom.ini
       - ./apache-php/init-wordpress.sh:/usr/local/bin/init-wordpress.sh
     environment:
