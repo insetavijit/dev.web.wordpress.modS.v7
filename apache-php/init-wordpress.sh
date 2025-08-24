@@ -244,6 +244,17 @@ install_wordpress() {
     
     # Set WordPress permissions
     set_wordpress_permissions
+
+    #install plugins 
+    # Install SCF
+    log "INFO" "Installing Secure Custom Fields plugin"
+    wp plugin install secure-custom-fields --activate --allow-root || error_exit "Failed to install SCF plugin"
+
+    # Install Safe SVG
+    log "INFO" "Installing Safe SVG plugin"
+    wp plugin install safe-svg --activate --allow-root || error_exit "Failed to install Safe SVG plugin"
+
+
 }
 
 # Function to link development theme
